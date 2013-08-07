@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load pagination_tags %}
+
+{% block header %}
+<form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.errors }}
+<div class="fileupload fileupload-new" data-provides="fileupload">
+  <span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="file" id="file" multiple="true"  onchange="this.form.submit()"/></span>
+  <span class="fileupload-preview"></span>
+  <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+</div>
+	<!--<button type="submit" class="btn">Upload</button>-->
+</form>
+{% endblock header %}
+
+{% block content %}
+<div>
+	{% if results %}
+	{% autopaginate results %}
+	<table class="table table-hover">
+		<tr>
+			<th>{{_('Name')}}</th>
+			<th>{{_('Size')}}</th>
+			<th>{{_('Modified')}}</th>
+		</tr>
+		{% for file in results %}
+		<tr>	
+			<td>{{file.name}}</td>
+			<td>{{file.file.size|filesizeformat}}</td>
+			<td>{{file.modified|timesince}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% paginate %}
+	{% else %}
+	no results
+	{% endif %}
+</div>
+{% endblock content %}

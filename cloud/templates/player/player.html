@@ -1,0 +1,9 @@
+{% load staticfiles %}
+{% for track in list %}
+	{
+		title:"{{ track.name }}",
+		mp3:"{{ track.file.url }}"
+	},
+{% endfor %}
+
+

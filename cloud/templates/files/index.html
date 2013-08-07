@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% load multiuploader %}
+
+{% block header %}
+<form method="post" enctype="multipart/form-data">
+	<input type="submit" value="Upload">
+</form>
+{% endblock header %}
+{% block content %}
+<div>
+	{% if files_list %}
+	<table class="table table-hover">
+		<tr>
+			<th>{{_('Name')}}</th>
+			<th>{{_('Size')}}</th>
+			<th>{{_('Modified')}}</th>
+		</tr>
+		{% for file in files_list %}
+		<tr>	
+			<td>{{file.name}}</td>
+			<td>{{file.size}}</td>
+			<td>{{file.modified}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+	no results
+	{% endif %}
+</div>
+{% endblock content %}

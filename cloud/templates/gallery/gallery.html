@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block css %}
+<link href="{{ STATIC_URL }}css/lightbox.css" rel="stylesheet">
+{% endblock css %}
+
+{% block header%}
+{% endblock header %}
+
+{% block content %}
+<div id='photos'>
+	<ul>
+		{% for image in list_images %}
+			<a href="{{ image.file.url }}" rel="lightbox[gallery]">
+				<img src="{{ image.thumbnail.url }}">
+			</a>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/lightbox.js"></script>
+{% endblock js%}

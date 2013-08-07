@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		{% load staticfiles %}
+		<title>{% block title %}{{ title|default:"Site title" }}{% endblock title %}</title>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/bootstrap-fileupload.css" rel="stylesheet">
+		{% block css %}
+		{% endblock css %}
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+			 		<form class="navbar-search pull-right" action="{% url 'files' %}">
+					  <input type="text" class="search-query" name="name" 
+					  	placeholder="{{ _('Search')}}">
+					</form>
+				</div>
+			</div>
+		</div>
+		<header></br></br></br></header>
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span2">
+						{% include "menu.html" %}
+					</div>
+					<div class="span10">
+						<div class="row-fluid">
+							{% block header %}	
+							{% endblock header%}
+						</div>		
+						<div class="container-fluid">
+								{% block content %}{% endblock content %}
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="footer">
+					{% block footer %}{% endblock footer %}
+					<script type="text/javascript" 
+						src="{{ STATIC_URL }}js/bootstrap.js"></script>
+					<script type="text/javascript" 
+						src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
+					<script type="text/javascript" 
+						src="{{ STATIC_URL }}js/bootstrap-fileupload.js"></script>
+					{% block js %}
+					{% endblock js %}
+			</div>		
+		  
+	</body>
+</hmtl>
