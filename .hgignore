@@ -1,0 +1,5 @@
+syntax: glob
+cloud/static
+cloud/media
+database.db
+local_settings.py
